@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "passwordgenerator-6a287": {
+      "hosting": {
+        "password-generator": [
+          "passwordgenerator-6a287"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "passwordgenerator-6a287"
+  }
+}

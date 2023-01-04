@@ -1,0 +1,48 @@
+<div *ngIf="auth.user | async as user; else showLogin">
+  <div class="logged">
+    <button mat-raised-button (click)="logout()" class="google-button">Sign out</button>
+    <button class="btn-main" mat-raised-button (click)="savePassword()">
+      Save
+    </button>
+  </div>
+
+  <div class="drop-panel">
+    <mat-expansion-panel class="expansion-panel">
+      <mat-expansion-panel-header>Saved passwords</mat-expansion-panel-header>
+      <div *ngFor="let user of users$ | async">
+        <div class="password-list">
+          <div class="password-center">
+            <p class="passowrd-text">{{user.password}}</p>
+          </div>
+          <div class="btns-copy-delete">
+            <button mat-icon-button [cdkCopyToClipboard]="user.password" class="delete-btn" matTooltip="Copy"
+              matTooltipPosition="left">
+              <mat-icon>content_copy</mat-icon>
+            </button>
+            <button mat-icon-button (click)="deletePassword(user.docID)" class="copy-btn" matTooltip="Delete"
+              matTooltipPosition="right">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-expansion-panel>
+  </div>
+
+</div>
+
+<ng-template #showLogin>
+  <div class="not-logged">
+    <button mat-raised-button (click)="login()" class="google-button">Sign in</button>
+    <div matTooltip="Please log in first"><button class="btn-main" mat-raised-button disabled>
+        Save
+      </button></div>
+
+  </div>
+  <div class="drop-panel">
+    <mat-expansion-panel class="expansion-panel" disabled>
+      <mat-expansion-panel-header>Saved passwords</mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </div>
+</ng-template>

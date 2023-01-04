@@ -1,0 +1,38 @@
+<div class="container">
+  <h1 class="title">Password Generator</h1>
+
+  <h3 class="password">{{passwordOutput}}</h3>
+
+  <div class="range">
+    <label for="charAmountRange">Length:</label>
+    <mat-slider min="8" max="40" step="1" showTickMarks discrete class="charAmountRange">
+      <input [(ngModel)]="characterAmount" matSliderThumb>
+    </mat-slider>
+  </div>
+
+  <section class="checkboxes">
+    <p>
+      <mat-checkbox color="primary" [(ngModel)]="uppercase">Uppercase</mat-checkbox>
+    </p>
+    <p>
+      <mat-checkbox color="primary" [(ngModel)]="numbers">Numbers</mat-checkbox>
+    </p>
+    <p>
+      <mat-checkbox color="primary" [(ngModel)]="symbols">Symbols</mat-checkbox>
+    </p>
+  </section>
+
+  <div class="buttons">
+    <div class="buttons-first-row">
+      <button mat-raised-button (click)="submitPassword()">
+        Generate
+      </button>
+      <button mat-raised-button [cdkCopyToClipboard]="passwordOutput">
+        Copy
+      </button>
+    </div>
+  </div>
+
+  <app-log-and-save [currentPassword]="passwordOutput"></app-log-and-save>
+
+</div>
