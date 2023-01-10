@@ -41,7 +41,6 @@ export class LogAndSaveComponent {
   login() {
     this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(user => {
       this.currentUser = user.user?.uid
-      console.log('Cureent user is: ' + this.currentUser)
     }).catch(function (error) {
       console.error(error)
     });
@@ -53,14 +52,12 @@ export class LogAndSaveComponent {
   savePassword() {
     this.afs.collection('users').doc(this.currentUser).collection('passwords').add({ password: this.currentPassword })
       .then(docRef => {
-        console.log('Doc ID is:', docRef.id)
         docRef.update({ docID: docRef.id, uid: this.currentUser })
       })
   }
 
   deletePassword(id: string | undefined) {
     this.afs.collection('users').doc(this.currentUser).collection('passwords').doc(id).delete()
-    console.log(id)
   }
 
 
