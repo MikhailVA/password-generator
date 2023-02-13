@@ -39,7 +39,9 @@ export class LogAndSaveComponent {
   }
 
   login() {
-    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(user => {
+    this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider().setCustomParameters({
+      prompt: 'select_account'
+    })).then(user => {
       this.currentUser = user.user?.uid
     }).catch(function (error) {
       console.error(error)
